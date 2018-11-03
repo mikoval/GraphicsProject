@@ -1,0 +1,30 @@
+Object
+Sphere
+Shader ColorShader
+Material Venus
+Position 0.0 0.0 0.0
+Scale 100.0 100.0 100.0
+End
+
+Object
+CubeMap
+Path assets/CubeMaps/Space
+Scale 1000.0 1000.0 1000.0
+End
+
+Object
+AstroidRing
+Params 300 5000
+End
+
+PointLight
+Position 0.0 0.0 0.0
+End
+
+
+Camera
+FreeCamera
+Position 0.0 100.0 -200.0
+Forward 0.0 0.0 1.0
+Up 0.0 1.0 0.0
+End

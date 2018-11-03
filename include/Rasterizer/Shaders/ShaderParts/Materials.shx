@@ -1,0 +1,22 @@
+struct MaterialParam {
+	vec3 ambient;
+	vec3 diffuse;
+	vec3 specular;
+
+	sampler2D ambientTexture;
+	sampler2D diffuseTexture;
+	sampler2D specularTexture;
+
+	float shininess;
+};
+
+struct Material {
+	vec3 ambient;
+	vec3 diffuse;
+	vec3 specular;
+
+	float shininess;
+};
+
+
+uniform MaterialParam material;

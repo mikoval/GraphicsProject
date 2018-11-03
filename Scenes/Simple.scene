@@ -1,0 +1,47 @@
+Object
+Cube
+Shader PhongShader
+Material Crate
+Position -3.0 0.0 0.0
+End
+ 
+Object
+Cube
+Shader PhongShader
+Material Crate
+Position 0.0 0.0 0.0
+End
+
+Object
+Model
+Path assets/Models/Quad.obj
+Shader PhongShader
+Material White
+RotateX 90
+Position 0.0 -1.0 0.0
+Scale 20.0 20.0 20.0
+End
+
+
+Object
+Model
+Path assets/Models/nanosuit/nanosuit.obj
+Shader PhongShader
+Position 0.0 1.0 0.0
+End
+
+
+DirectionalLight
+Direction -2.0 -1.0 -1.0
+Ambient 0.1 0.1 0.1
+Diffuse 1.0 1.0 1.0
+Specular 1.0 1.0 1.0
+Shadow 3 -10 10 -10 10 0.1 20
+End
+
+Camera
+FreeCamera
+Position 0.0 0.0 -8.0
+Forward 0.0 0.0 1.0
+Up 0.0 1.0 0.0
+End

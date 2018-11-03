@@ -1,0 +1,36 @@
+
+Object
+Model
+Path assets/Models/cube_test.obj
+Shader PhongShader
+Scale 2.0 2.0 2.0
+Position 1.0 -0.5 0.0
+End
+
+
+
+
+Object
+Model
+Path assets/Models/Quad.obj
+Shader PhongShader
+Material White
+RotateX 90
+Position 0.0 -0.5 0.0
+Scale 20.0 20.0 20.0
+End
+
+Camera
+OrbitalCamera
+Position 0.0 10.0 -20.0
+Forward 0.0 0.0 1.0
+Up 0.0 1.0 0.0
+End
+
+DirectionalLight
+Direction 1.0 -5.0 -2.0
+Ambient 0.5 0.5 0.5
+Diffuse 0.7 0.7 0.7
+Specular 1.0 1.0 1.0
+Shadow 2 -10 10 -10 10 0.1 50
+End
