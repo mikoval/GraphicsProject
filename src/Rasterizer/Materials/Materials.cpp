@@ -3,7 +3,7 @@
 #include <vector>
 
 
-#define STD_AMB	Vec3f(0.1, 0.1, 0.1)
+#define STD_AMB	Vec3f(0.3, 0.3, 0.3)
 #define STD_DIF	Vec3f(0.6, 0.6, 0.6)
 #define STD_SPEC Vec3f(1.0, 1.0, 1.0)
 #define STD_SHIN 1.0
@@ -15,6 +15,15 @@ static inline void loadImage(GLuint *, const char *);
 
 string crateDiffuse = "assets/Textures/Crate/diffuse.png";
 string crateSpecular = "assets/Textures/Crate/specular.png";
+
+string brickDiffuse = "assets/Textures/Brick/Diffuse.jpg";
+string brickSpecular = "assets/Textures/Brick/Gloss.jpg";
+
+string blackTileDiffuse = "assets/Textures/BlackTile/diffuse.jpg";
+string blackTileSpecular = "assets/Textures/BlackTile/gloss.jpg";
+
+string blackTileSmallDiffuse = "assets/Textures/BlackTileSmall/diffuse.png";
+string blackTileSmallSpecular = "assets/Textures/BlackTileSmall/gloss.png";
 
 string testDiffuse = "assets/Textures/Test/diffuse.png";
 string testSpecular = "assets/Textures/Test/specular.png";
@@ -92,10 +101,41 @@ Material blue = {
 	0, 0, 0,
 	false
 };
+Material red_phong = {
+	Vec3f(0.3, 0.0, 0.0),
+	Vec3f(1.0, 0.0, 0.0),
+	Vec3f(1.0, 1.0, 1.0),
+	0.0,
+
+	"", "", "", 
+	0, 0, 0,
+	false
+};
+Material green_phong = {
+	Vec3f(0.0, 0.3, 0.0),
+	Vec3f(0.0, 1.0, 0.0),
+	Vec3f(1.0, 1.0, 1.0),
+	0.0,
+
+	"", "", "", 
+	0, 0, 0,
+	false
+};
+Material blue_phong = {
+	Vec3f(0.0, 0.0, 0.3),
+	Vec3f(0.0, 0.0, 1.0),
+	Vec3f(1.0, 1.0, 1.0),
+	0.0,
+
+	"", "", "", 
+	0, 0, 0,
+	false
+};
+
 
 Material white = {
-	Vec3f(0.1, 0.1, 0.1),
-	Vec3f(0.6, 0.6, 0.6),
+	Vec3f(0.3, 0.3, 0.3),
+	Vec3f(0.7, 0.7, 0.7),
 	Vec3f(1.0, 1.0, 1.0),
 	1.0,
 
@@ -111,6 +151,26 @@ Material crate = {
 	false
 };
 
+Material brick = {
+	STD_AMB, STD_DIF, STD_SPEC, STD_SHIN, 
+	brickDiffuse, brickDiffuse, brickSpecular,
+	EMPTY_TEXTURE_INTS,
+	false
+};
+
+Material black_tile = {
+	STD_AMB, STD_DIF, STD_SPEC, STD_SHIN, 
+	blackTileDiffuse, blackTileDiffuse, blackTileSpecular,
+	EMPTY_TEXTURE_INTS,
+	false
+};
+
+Material black_tile_small = {
+	STD_AMB, STD_DIF, STD_SPEC, STD_SHIN,
+	blackTileSmallDiffuse, blackTileSmallDiffuse, blackTileSmallSpecular,
+	EMPTY_TEXTURE_INTS,
+	false
+};
 
 
 Material earth = {
@@ -139,6 +199,8 @@ static inline void loadMaterial(Material *m){
 
 
 static inline void loadImage(GLuint *texture, const char *path){
+	std::cout << "LOADING IMAGE AT PATH: " << path << std::endl;
+
 	glGenTextures(1, texture);
 	glBindTexture(GL_TEXTURE_2D, *texture);
 	// set the texture wrapping/filtering options (on the currently bound texture object)
@@ -149,6 +211,24 @@ static inline void loadImage(GLuint *texture, const char *path){
 	// load and generate the texture
 	int width, height, nrChannels;
 	unsigned char *data = stbi_load(path, &width, &height, &nrChannels, 0);
+	std::cout << "CHECKING SINGLE CHANNEL" << " NUMBER OF PATHS: " << nrChannels << std::endl;
+
+	if(nrChannels == 1){ 
+		nrChannels = 3;
+		unsigned char * data2 =(unsigned char *) malloc(width * height * 3);
+		for(int i = 0 ; i < width ; i++) {
+			for(int j = 0; j < height; j++){
+				data2[(j * width + i) * 3] = data[(j * width + i)];
+				data2[(j * width + i) * 3 + 1] = data[(j * width + i)];
+				data2[(j * width + i) * 3 + 2] = data[(j * width + i)];
+			}
+		}
+        stbi_image_free(data);
+		data = data2;
+
+	}
+
+		std::cout << "SETTING TYPE" << std::endl;
 
 	GLuint type;
 	if(nrChannels == 3){
@@ -156,16 +236,20 @@ static inline void loadImage(GLuint *texture, const char *path){
 	} else if (nrChannels == 4){
 		type = GL_RGBA;
 	}
+	std::cout << "CREATING TEX IMAGE" << std::endl;
+
 	if (data)
 	{
 	    glTexImage2D(GL_TEXTURE_2D, 0, type, width, height, 0, type, GL_UNSIGNED_BYTE, data);
 	    glGenerateMipmap(GL_TEXTURE_2D);
+	     std::cout << "succeeded to load texture: " << path << std::endl;
 	}
 	else
 	{
 	    std::cout << "Failed to load texture: " << path << std::endl;
 	}
-	stbi_image_free(data);
+	free(data);
+	std::cout << "DONE WITH IMAGE" << std::endl;
 }
 
 static inline unsigned int loadCubemap(string dir, vector<string> faces)
@@ -207,8 +291,12 @@ static inline unsigned int loadCubemap(string dir, vector<string> faces)
 
 int initMaterials(){
 	loadMaterial(&crate);
+	loadMaterial(&brick);
 	loadMaterial(&earth);
 	loadMaterial(&venus);
+	loadMaterial(&black_tile);
+	loadMaterial(&black_tile_small);
+	printf("DONE LOADING MATERIALS \n ");
 	return 0;
 }
 

@@ -12,7 +12,6 @@ void glMesh::draw(Mat4x4 transform){
 
     if(material.enabled){
     	renderer.setMaterial(&material);
-    	cout <<"SETTING MATERIAL DIFFUSE X : " <<  material.diffuse.x << endl;
     }
     
     

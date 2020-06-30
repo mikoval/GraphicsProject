@@ -6,8 +6,8 @@
 #include <Shaders/CubeMap/CubeMapShader.h>
 #include <Shaders/TextureShaders/DisplayImageShader.h>
 #include <Shaders/TextureShaders/BlurImageShader.h>
-
 #include <Shaders/Shadows/ShadowShader.h>
+#include <Shaders/Text/TextShader.h>
 
 
 #include <string>
@@ -25,6 +25,7 @@ static GLuint CubeMapShader = 0;
 static GLuint DisplayImageShader = 0;
 static GLuint BlurImageShader = 0;
 static GLuint ShadowShader = 0;
+static GLuint TextShader = 0;
 
 
 ShaderManager::ShaderManager(){
@@ -78,6 +79,12 @@ GLuint* ShaderManager::LoadShader(string shader) {
 			ShadowShader = CreateShadowShader();
 		}
 		return &ShadowShader;
+	}
+	else if(shader == "TextShader") {
+		if(!TextShader){
+			TextShader = CreateTextShader();
+		}
+		return &TextShader;
 	}
 	else {
 		assert(false);

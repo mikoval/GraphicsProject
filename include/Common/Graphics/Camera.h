@@ -28,7 +28,7 @@ public:
 	Camera(Vec3f pos, Vec3f dir, Vec3f up);
 
 	Mat4x4 view();
-	Mat4x4 projection();
+	virtual Mat4x4 projection();
 	void transform(Mat4x4 transform);
 	virtual void setPosition(Vec3f position);
 	void setAxis();

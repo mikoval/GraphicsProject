@@ -26,7 +26,7 @@ static inline void mouse_click_callback(GLFWwindow* window, int button, int acti
 	inputManager->mouseClick(button, action);
 }  
 
-void BindControls(InputManager *im) {
+static void BindControls(InputManager *im) {
 	inputManager = im;
 	glSetKeyCallback(key_callback);
 	glSetScrollCallback(scroll_callback);

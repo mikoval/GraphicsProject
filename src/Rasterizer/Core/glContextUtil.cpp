@@ -26,6 +26,8 @@ int InitGLContext() {
 
 	/* Create a windowed mode window and its OpenGL context */
 	window = glfwCreateWindow( WIDTH, HEIGHT, "Hello World", NULL, NULL );
+
+	printf("CREATING WINDOW\n");
 	if (!window)
 	{
 	 	glfwTerminate();
@@ -44,6 +46,8 @@ int InitGLContext() {
 
 
 	glfwGetFramebufferSize(window, &WINDOW_WIDTH, &WINDOW_HEIGHT);
+
+	printf("WINDOW SIZE: %d %d \n", WINDOW_WIDTH, WINDOW_HEIGHT);
 
 	//glEnable(GL_FRAMEBUFFER_SRGB);
 	return 1;

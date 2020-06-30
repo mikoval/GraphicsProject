@@ -1,6 +1,7 @@
 CC := g++  -std=c++11
 RAYTRACER_EXEC ?= raytracer
 RASTERIZER_EXEC ?= rasterizer 
+PONG_EXEC ?= pong
 BUILD_DIR ?= ./build
 SRC_DIRS ?= ./src
 INCLUDE_DIRS ?= ./include
@@ -13,32 +14,35 @@ INC_DIRS :=  ./include ./include/Common ./include/Rasterizer
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 
-LIB := -lm -lglfw -lassimp -framework OpenGL
-INC :=  -I -Iinclude -I/usr/local/include -I/opt/X11/include
-
-RAYRACER_OBJS := $(filter-out ./build/./src/Rasterizer.cpp.o, $(OBJS))
-RASTERIZER_OBJS := $(filter-out ./build/./src/Raytracer.cpp.o, $(OBJS))
-
-$(info    VAR is $(RAYRACER_OBJS))
-
-$(info    VAR is $())
+LIB := -lm -lglfw -lassimp -lfreetype -framework OpenGL
+INC :=  -I -Iinclude -I/usr/local/include -I/opt/X11/include  -I/usr/local/opt/freetype/include/freetype2
 
 
-all: $(RASTERIZER_EXEC) $(RAYTRACER_EXEC)
+OBJS:=$(filter-out ./build/./src/main/%,$(OBJS))
+
+RAYTRACER_OBJS := ./build/./src/main/Raytracer.cpp.o $(OBJS)
+RASTERIZER_OBJS := ./build/./src/main/Rasterizer.cpp.o $(OBJS)
+PONG_OBJS := ./build/./src/main/Pong.cpp.o $(OBJS)
+
+
+all: $(RASTERIZER_EXEC) $(RAYTRACER_EXEC) $(PONG_EXEC)
 
 CPPFLAGS ?= $(INC_FLAGS) -Wno-deprecated-declarations -Wall -Wpedantic 
 
 $(RASTERIZER_EXEC): $(RASTERIZER_OBJS)
 	$(CC) $(RASTERIZER_OBJS) -o $@ $(LDFLAGS)  $(LIB) $(INC)
 
-$(RAYTRACER_EXEC): $(RAYRACER_OBJS)
-	$(CC) $(RAYRACER_OBJS) -o $@ $(LDFLAGS)  $(LIB) $(INC)
+$(RAYTRACER_EXEC): $(RAYTRACER_OBJS)
+	$(CC) $(RAYTRACER_OBJS) -o $@ $(LDFLAGS)  $(LIB) $(INC)
 
+
+$(PONG_EXEC): $(PONG_OBJS)
+	$(CC) $(PONG_OBJS) -o $@ $(LDFLAGS)  $(LIB) $(INC)
 
 # c++ source
 $(BUILD_DIR)/%.cpp.o: %.cpp
 	$(MKDIR_P) $(dir $@)
-	$(CC) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+	$(CC) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@ $(INC)
 
 
 .PHONY: clean

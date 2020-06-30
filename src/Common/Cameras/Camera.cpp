@@ -20,6 +20,11 @@ Camera::Camera(Vec3f pos, Vec3f forward, Vec3f up){
 
 	this->right = cross(worldUp, dir).norm();
 	this->up = cross(dir, right).norm();
+
+		printf("================CAMERA RIGHT: %f %f %f \n", right.x, right.y, right.z);
+
+		printf("================CAMERA UP: %f %f %f \n", this->up.x, this->up.y, this->up.z);
+
 }
 
 void Camera::transform(Mat4x4 transform){
@@ -90,6 +95,12 @@ void Camera::lookAt(Vec3f target){
 }
 
 void Camera::setAxis(){
-	right = cross(worldUp, dir).norm();
-	up = cross(dir, right).norm();
+	this->right = cross(worldUp, dir).norm();
+	this->up = cross(dir, right).norm();
+
+	printf("================CAMERA RIGHT: %f %f %f \n", right.x, right.y, right.z);
+
+	printf("================CAMERA UP: %f %f %f \n", this->up.x, this->up.y, this->up.z);
+
+
 }

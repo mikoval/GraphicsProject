@@ -1,0 +1,23 @@
+x x x x x x x x x x x x x x x x x x x x x x x x x x x x x x
+x o o r r r r|r r r r|r r r r|r r r r|r r r r|r r r r o o x
+x o o o o b b b b|b b b b|b b b b|b b b b|b b b b o o o o x
+x o o g g g g|g g g g|g g g g|g g g g|g g g g|g g g g o o x
+x o o o o r r r r|r r r r|r r r r|r r r r|r r r r o o o o x
+x o o b b b b|b b b b|b b b b|b b b b|b b b b|b b b b o o x
+x o o o o g g g g|g g g g|g g g g|g g g g|g g g g o o o o x
+x o o r r r r|r r r r|r r r r|r r r r|r r r r|r r r r o o x
+x o o o o b b b b|b b b b|b b b b|b b b b|b b b b o o o o x
+x o o g g g g|g g g g|g g g g|g g g g|g g g g|g g g g o o x
+x o o o o o o o o o o o o o o o o o o o o o o o o o o o o x
+x o o o o o o o o o o o o o o o o o o o o o o o o o o o o x
+x o o o o o o o o o o o o o o o o o o o o o o o o o o o o x
+x o o o o o o o o o o o o o o o o o o o o o o o o o o o o x
+x o o o o o o o o o o o o o o o o o o o o o o o o o o o o x
+x o o o o o o o o o o o o o o o o o o o o o o o o o o o o x
+x o o o o o o o o o o o o o o o o o o o o o o o o o o o o x
+x o o o o o o o o o o o o o o o o o o o o o o o o o o o o x
+x o o o o o o o o o o o o o o o o o o o o o o o o o o o o x
+x o o o o o o o o o o o o o o o o o o o o o o o o o o o o x
+x o o o o o o o o o o o o o o o o o o o o o o o o o o o o x
+x o o o o o o o o o o o o o o o o o o o o o o o o o o o o x
+

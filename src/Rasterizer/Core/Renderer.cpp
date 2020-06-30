@@ -117,11 +117,16 @@ void glRenderer::addPointLight(PointLight *p) {
 }
 
 void glRenderer::setDirectionalLight(DirectionalLight *light){
-	if(light == NULL){
+
+	if(light == NULL ){
 		return;
 	}
 
 	scene.dirLight = light;
+	if(program == 0){
+		return;
+	}
+	
 	GLuint dir_u = glGetUniformLocation (program, "dirLight.direction");
 	GLuint amb_u = glGetUniformLocation (program, "dirLight.ambient");
 	GLuint dif_u = glGetUniformLocation (program, "dirLight.diffuse");
@@ -136,6 +141,7 @@ void glRenderer::setDirectionalLight(DirectionalLight *light){
 	glUniform3f(amb_u, ambient.x, ambient.y, ambient.z);
 	glUniform3f(dif_u, diffuse.x, diffuse.y, diffuse.z);
 	glUniform3f(spec_u, specular.x, specular.y, specular.z);
+
 }
 
 DirectionalLight *glRenderer::getDirectionalLight(){

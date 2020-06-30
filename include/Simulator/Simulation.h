@@ -9,8 +9,6 @@ protected:
 	InputManager *inputManager;
 public:
 	Simulation();
-	void Draw();
-	void Update();
 	
 	virtual void setInputManager(InputManager *im);
 	virtual void simulate();

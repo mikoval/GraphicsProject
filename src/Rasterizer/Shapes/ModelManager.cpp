@@ -124,7 +124,6 @@ static glMesh processMesh(aiMesh *mesh, const aiScene *scene)
         
         aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
         Material m;
-        cout << "==================enabling " << endl;
         m.enabled = true;
 
 
@@ -133,14 +132,9 @@ static glMesh processMesh(aiMesh *mesh, const aiScene *scene)
         if(aiGetMaterialColor(material, AI_MATKEY_COLOR_AMBIENT,  &c) != aiReturn_SUCCESS || Vec3f(c.r, c.g, c.b) == Vec3f(0.0, 0.0, 0.0))
         {
             m.enabled = false;
-            cout << "==================no textures " << endl;
 
             return glMesh(vertices, indices, m);
-        } else { 
-            cout << "==================textures " << endl;
-
         }
-
         m.diffuseTexture = loadMaterialTexture(scene, material, aiTextureType_DIFFUSE);
 		m.specularTexture = loadMaterialTexture(scene, material, aiTextureType_SPECULAR);
 	    m.ambientTexture = loadMaterialTexture(scene, material, aiTextureType_AMBIENT);

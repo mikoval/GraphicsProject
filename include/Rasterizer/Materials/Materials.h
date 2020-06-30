@@ -27,12 +27,20 @@ extern Material cyan_plastic;
 extern Material red;
 extern Material green;
 extern Material blue;
+
+extern Material red_phong;
+extern Material green_phong;
+extern Material blue_phong;
+
 extern Material white;
 
 
 extern Material crate;
 extern Material earth;
 extern Material venus;
+extern Material brick;
+extern Material black_tile;
+extern Material black_tile_small;
 
 int initMaterials();
 

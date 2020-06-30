@@ -8,7 +8,7 @@ End
 Object
 Cube
 Shader PhongShader
-Material Crate
+Material BlackTile
 Position 0.0 0.0 0.0
 End
 
@@ -16,7 +16,7 @@ Object
 Model
 Path assets/Models/Quad.obj
 Shader PhongShader
-Material White
+Material BlackTile
 RotateX 90
 Position 0.0 -1.0 0.0
 Scale 20.0 20.0 20.0
@@ -33,7 +33,7 @@ End
 
 DirectionalLight
 Direction -2.0 -1.0 -1.0
-Ambient 0.1 0.1 0.1
+Ambient 1.0 1.0 1.0
 Diffuse 1.0 1.0 1.0
 Specular 1.0 1.0 1.0
 Shadow 3 -10 10 -10 10 0.1 20

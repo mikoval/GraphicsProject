@@ -22,7 +22,6 @@ void glMeshObject::draw(){
 void glMeshObject::draw(Mat4x4 transform){
 	renderer.setProgram(*program);
 
-	rotation = RotateY(0.01) * rotation; 
 	Mat4x4 trans = Translation(position) * rotation;
 	Mat4x4 scale_mat = Scale(scale);
 

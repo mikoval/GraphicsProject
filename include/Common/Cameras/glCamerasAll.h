@@ -3,6 +3,7 @@
 
 #include <Cameras/OrbitalCamera.h>
 #include <Cameras/FreeCamera.h>
+#include <Cameras/OrthographicCamera.h>
 
 
 #endif
